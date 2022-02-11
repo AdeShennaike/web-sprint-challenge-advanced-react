@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 
 export default class AppClass extends React.Component {
@@ -5,11 +6,55 @@ export default class AppClass extends React.Component {
     x:2,
     y:2,
     steps:0,
-    email: "june@Hot.com"
+    email: "",
+    message:''
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    axios.post('http://localhost:9000/api/result', this.state)
+    .then( res => {
+      this.setState({
+        ...this.state,
+        message: res.data.message
+      })
+    })
+  }
+
+  handleChange = (e) => {
+    // console.log(e.target.id)
+    this.setState({
+      ...this.state,
+      email: e.target.value
+    })
+  }
+
+  handleXminus = () => {
+    console.log('left')
+    // this.state.x <= 3 && this.state.x > 0 ? 
+    // this.setState({...this.state, x: this.state.x - 1}) :
+    // this.setState({...this.state, x: this.state.x === 3 ? 3 : this.state.x, message: "You can't go left"})
+  }
+
+  handleYadd = () => {
+    console.log('up')
+  }
+
+  handleXadd = () => {
+    console.log('right')
+  }
+
+  handleYminus = () => {
+    console.log('down')
+  }
+
+  handleReset = () => {
+    console.log('reset')
   }
 
   render() {
     const { className } = this.props
+    console.log(this.state.email)
     return (
       <div id="wrapper" className={className}>
         <div className="info">
@@ -54,17 +99,17 @@ export default class AppClass extends React.Component {
           </div>
         </div>
         <div className="info">
-          <h3 id="message"></h3>
+          <h3 id="message">{this.state.message}</h3>
         </div>
         <div id="keypad">
-          <button id="left">LEFT</button>
-          <button id="up">UP</button>
-          <button id="right">RIGHT</button>
-          <button id="down">DOWN</button>
-          <button id="reset">reset</button>
+          <button id="left" onClick = {this.handleXminus}>LEFT</button>
+          <button id="up" onClick = {this.handleYadd}>UP</button>
+          <button id="right" onClick = {this.handleXadd}>RIGHT</button>
+          <button id="down" onClick = {this.handleYminus}>DOWN</button>
+          <button id="reset" onClick = {this.handleReset}>reset</button>
         </div>
-        <form>
-          <input id="email" type="email" placeholder="type email"></input>
+        <form onSubmit = {this.handleSubmit}>
+          <input id="email" type="email" placeholder="type email" value = {this.state.email} onChange = {this.handleChange}></input>
           <input id="submit" type="submit"></input>
         </form>
       </div>
