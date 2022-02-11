@@ -16,6 +16,7 @@ export default class AppClass extends React.Component {
     .then( res => {
       this.setState({
         ...this.state,
+        email: "",
         message: res.data.message
       })
     })
@@ -25,7 +26,6 @@ export default class AppClass extends React.Component {
         ...this.state,
         message: 'Ouch: email is required'
       })
-
     })
   }
 
@@ -37,27 +37,27 @@ export default class AppClass extends React.Component {
   }
 
   handleXminus = () => {
-    this.state.y <= 3 && this.state.y >= 2 ? 
-    this.setState({...this.state, y: this.state.y - 1, steps: this.state.steps + 1}) :
-    this.setState({...this.state, y: this.state.y === 3 ? 3 : this.state.y, message: "You can't go left"})
+    this.state.x >= 2 ? 
+    this.setState({...this.state, x: this.state.x - 1, steps: this.state.steps + 1,  message: ''}) :
+    this.setState({...this.state, message: "You can't go left"})
   }
   
   handleYadd = () => {
-    this.state.x <= 3 && this.state.x >= 2 ? 
-    this.setState({...this.state, x: this.state.x - 1, steps: this.state.steps + 1}) :
-    this.setState({...this.state, x: this.state.x === 3 ? 3 : this.state.x, message: "You can't go up"})
+    this.state.y >= 2 ? 
+    this.setState({...this.state, y: this.state.y - 1, steps: this.state.steps + 1,  message: ''}) :
+    this.setState({...this.state, message: "You can't go up"})
   }
   
   handleXadd = () => {
-    this.state.y <= 2 && this.state.y >= 1 ? 
-    this.setState({...this.state, y: this.state.y + 1, steps: this.state.steps + 1}) :
-    this.setState({...this.state, y: this.state.y === 3 ? 3 : this.state.y, message: "You can't go right"})
+    this.state.x <= 2  ? 
+    this.setState({...this.state, x: this.state.x + 1, steps: this.state.steps + 1,  message: ''}) :
+    this.setState({...this.state, message: "You can't go right"})
   }
   
   handleYminus = () => {
-    this.state.x <= 2 && this.state.x >= 1 ? 
-    this.setState({...this.state, x: this.state.x + 1, steps: this.state.steps + 1}) :
-    this.setState({...this.state, x: this.state.x === 3 ? 3 : this.state.x, message: "You can't go down"})
+    this.state.y <= 2 ? 
+    this.setState({...this.state, y: this.state.y + 1, steps: this.state.steps + 1,  message: ''}) :
+    this.setState({...this.state, message: "You can't go down"})
   }
 
   handleReset = () => {
@@ -84,32 +84,32 @@ export default class AppClass extends React.Component {
             {this.state.x === 1 && this.state.y === 1 ? "B" : ''}
           </div>
 
-          <div className = {this.state.x === 1 && this.state.y === 2 ? "square active" : "square"}>
-            {this.state.x === 1 && this.state.y === 2 ? "B" : ''}
-          </div>
-
-          <div className = {this.state.x === 1 && this.state.y === 3 ? "square active" : "square"}>
-            {this.state.x === 1 && this.state.y === 3 ? "B" : ''}
-          </div>
-
           <div className = {this.state.x === 2 && this.state.y === 1 ? "square active" : "square"}>
             {this.state.x === 2 && this.state.y === 1 ? "B" : ''}
-          </div>
-
-          <div className = {this.state.x === 2 && this.state.y === 2 ? "square active" : "square"}>
-          {this.state.x === 2 && this.state.y === 2 ? "B" : ''}
-          </div>
-
-          <div className = {this.state.x === 2 && this.state.y === 3 ? "square active" : "square"}>
-            {this.state.x === 2 && this.state.y === 3 ? "B" : ''}
           </div>
 
           <div className = {this.state.x === 3 && this.state.y === 1 ? "square active" : "square"}>
             {this.state.x === 3 && this.state.y === 1 ? "B" : ''}
           </div>
 
+          <div className = {this.state.x === 1 && this.state.y === 2 ? "square active" : "square"}>
+            {this.state.x === 1 && this.state.y === 2 ? "B" : ''}
+          </div>
+
+          <div className = {this.state.x === 2 && this.state.y === 2 ? "square active" : "square"}>
+          {this.state.x === 2 && this.state.y === 2 ? "B" : ''}
+          </div>
+
           <div className = {this.state.x === 3 && this.state.y === 2 ? "square active" : "square"}>
             {this.state.x === 3 && this.state.y === 2 ? "B" : ''}
+          </div>
+
+          <div className = {this.state.x === 1 && this.state.y === 3 ? "square active" : "square"}>
+            {this.state.x === 1 && this.state.y === 3 ? "B" : ''}
+          </div>
+
+          <div className = {this.state.x === 2 && this.state.y === 3 ? "square active" : "square"}>
+            {this.state.x === 2 && this.state.y === 3 ? "B" : ''}
           </div>
           
           <div className = {this.state.x === 3 && this.state.y === 3 ? "square active" : "square"}>
@@ -127,7 +127,7 @@ export default class AppClass extends React.Component {
           <button id="reset" onClick = {this.handleReset}>reset</button>
         </div>
         <form onSubmit = {this.handleSubmit}>
-          <input id="email" type="email" placeholder="type email" value = {this.state.email} onChange = {this.handleChange}></input>
+          <input id="email" type="email" placeholder="type email"  value = {this.state.email} onChange = {this.handleChange}></input>
           <input id="submit" type="submit"></input>
         </form>
       </div>

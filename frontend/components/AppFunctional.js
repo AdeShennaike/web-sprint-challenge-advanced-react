@@ -9,13 +9,14 @@ export default function AppFunctional(props) {
     email: "",
     message:''
   })
-
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     axios.post('http://localhost:9000/api/result', state)
     .then( res => {
       setState({
         ...state,
+        email: "",
         message: res.data.message
       })
     })
@@ -25,7 +26,6 @@ export default function AppFunctional(props) {
         ...state,
         message: 'Ouch: email is required'
       })
-
     })
   }
 
@@ -37,27 +37,27 @@ export default function AppFunctional(props) {
   }
 
   const handleXminus = () => {
-    state.y <= 3 && state.y >= 2 ? 
-    setState({...state, y: state.y - 1, steps: state.steps + 1}) :
-    setState({...state, y: state.y === 3 ? 3 : state.y, message: "You can't go left"})
+    state.x >= 2 ? 
+    setState({...state, x: state.x - 1, steps: state.steps + 1,  message: ''}) :
+    setState({...state, message: "You can't go left"})
   }
   
   const handleYadd = () => {
-    state.x <= 3 && state.x >= 2 ? 
-    setState({...state, x: state.x - 1, steps: state.steps + 1}) :
-    setState({...state, x: state.x === 3 ? 3 : state.x, message: "You can't go up"})
+    state.y >= 2 ? 
+    setState({...state, y: state.y - 1, steps: state.steps + 1,  message: ''}) :
+    setState({...state, message: "You can't go up"})
   }
   
   const handleXadd = () => {
-    state.y <= 2 && state.y >= 1 ? 
-    setState({...state, y: state.y + 1, steps: state.steps + 1}) :
-    setState({...state, y: state.y === 3 ? 3 : state.y, message: "You can't go right"})
+    state.x <= 2 ? 
+    setState({...state, x: state.x + 1, steps: state.steps + 1,  message: ''}) :
+    setState({...state, message: "You can't go right"})
   }
   
   const handleYminus = () => {
-    state.x <= 2 && state.x >= 1 ? 
-    setState({...state, x: state.x + 1, steps: state.steps + 1}) :
-    setState({...state, x: state.x === 3 ? 3 : state.x, message: "You can't go down"})
+    state.y <= 2 ? 
+    setState({...state, y: state.y + 1, steps: state.steps + 1,  message: ''}) :
+    setState({...state, message: "You can't go down"})
   }
 
   const handleReset = () => { 
@@ -82,32 +82,32 @@ export default function AppFunctional(props) {
             {state.x === 1 && state.y === 1 ? "B" : ''}
           </div>
 
-          <div className = {state.x === 1 && state.y === 2 ? "square active" : "square"}>
-            {state.x === 1 && state.y === 2 ? "B" : ''}
-          </div>
-
-          <div className = {state.x === 1 && state.y === 3 ? "square active" : "square"}>
-            {state.x === 1 && state.y === 3 ? "B" : ''}
-          </div>
-
           <div className = {state.x === 2 && state.y === 1 ? "square active" : "square"}>
             {state.x === 2 && state.y === 1 ? "B" : ''}
-          </div>
-
-          <div className = {state.x === 2 && state.y === 2 ? "square active" : "square"}>
-          {state.x === 2 && state.y === 2 ? "B" : ''}
-          </div>
-
-          <div className = {state.x === 2 && state.y === 3 ? "square active" : "square"}>
-            {state.x === 2 && state.y === 3 ? "B" : ''}
           </div>
 
           <div className = {state.x === 3 && state.y === 1 ? "square active" : "square"}>
             {state.x === 3 && state.y === 1 ? "B" : ''}
           </div>
 
+          <div className = {state.x === 1 && state.y === 2 ? "square active" : "square"}>
+            {state.x === 1 && state.y === 2 ? "B" : ''}
+          </div>
+
+          <div className = {state.x === 2 && state.y === 2 ? "square active" : "square"}>
+          {state.x === 2 && state.y === 2 ? "B" : ''}
+          </div>
+
           <div className = {state.x === 3 && state.y === 2 ? "square active" : "square"}>
             {state.x === 3 && state.y === 2 ? "B" : ''}
+          </div>
+
+          <div className = {state.x === 1 && state.y === 3 ? "square active" : "square"}>
+            {state.x === 1 && state.y === 3 ? "B" : ''}
+          </div>
+
+          <div className = {state.x === 2 && state.y === 3 ? "square active" : "square"}>
+            {state.x === 2 && state.y === 3 ? "B" : ''}
           </div>
           
           <div className = {state.x === 3 && state.y === 3 ? "square active" : "square"}>
