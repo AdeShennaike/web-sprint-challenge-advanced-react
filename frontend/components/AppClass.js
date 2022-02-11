@@ -4,7 +4,7 @@ import React from 'react'
 export default class AppClass extends React.Component {
   state = {
     x:2,
-    y:3,
+    y:2,
     steps:0,
     email: "",
     message:''
@@ -30,21 +30,30 @@ export default class AppClass extends React.Component {
 
   handleXminus = () => {
     console.log('left')
-    // this.state.x <= 3 && this.state.x > 0 ? 
-    // this.setState({...this.state, x: this.state.x - 1, steps: steps + 1}) :
-    // this.setState({...this.state, x: this.state.x === 3 ? 3 : this.state.x, message: "You can't go left"})
+    this.state.y <= 3 && this.state.y >= 2 ? 
+    this.setState({...this.state, y: this.state.y - 1, steps: this.state.steps + 1}) :
+    this.setState({...this.state, y: this.state.y === 3 ? 3 : this.state.y, message: "You can't go left"})
   }
-
+  
   handleYadd = () => {
     console.log('up')
+    this.state.x <= 3 && this.state.x >= 2 ? 
+    this.setState({...this.state, x: this.state.x - 1, steps: this.state.steps + 1}) :
+    this.setState({...this.state, x: this.state.x === 3 ? 3 : this.state.x, message: "You can't go up"})
   }
-
+  
   handleXadd = () => {
     console.log('right')
+    this.state.y <= 2 && this.state.y >= 1 ? 
+    this.setState({...this.state, y: this.state.y + 1, steps: this.state.steps + 1}) :
+    this.setState({...this.state, y: this.state.y === 3 ? 3 : this.state.y, message: "You can't go right"})
   }
-
+  
   handleYminus = () => {
     console.log('down')
+    this.state.x <= 2 && this.state.x >= 1 ? 
+    this.setState({...this.state, x: this.state.x + 1, steps: this.state.steps + 1}) :
+    this.setState({...this.state, x: this.state.x === 3 ? 3 : this.state.x, message: "You can't go down"})
   }
 
   handleReset = () => {
