@@ -1,24 +1,57 @@
 import React from 'react'
 
 export default class AppClass extends React.Component {
+  state = {
+    x:2,
+    y:2,
+    steps:0,
+    email: "june@Hot.com"
+  }
+
   render() {
     const { className } = this.props
     return (
       <div id="wrapper" className={className}>
         <div className="info">
-          <h3 id="coordinates">Coordinates (2, 2)</h3>
-          <h3 id="steps">You moved 0 times</h3>
+          <h3 id="coordinates">Coordinates ({this.state.x}, {this.state.y})</h3>
+          <h3 id="steps">You moved {this.state.steps} times</h3>
         </div>
         <div id="grid">
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square active">B</div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
+          <div className = {this.state.x === 1 && this.state.y === 1 ? "square active" : "square"}>
+            {this.state.x === 1 && this.state.y === 1 ? "B" : ''}
+          </div>
+
+          <div className = {this.state.x === 1 && this.state.y === 2 ? "square active" : "square"}>
+            {this.state.x === 1 && this.state.y === 2 ? "B" : ''}
+          </div>
+
+          <div className = {this.state.x === 1 && this.state.y === 3 ? "square active" : "square"}>
+            {this.state.x === 1 && this.state.y === 3 ? "B" : ''}
+          </div>
+
+          <div className = {this.state.x === 2 && this.state.y === 1 ? "square active" : "square"}>
+            {this.state.x === 2 && this.state.y === 1 ? "B" : ''}
+          </div>
+
+          <div className = {this.state.x === 2 && this.state.y === 2 ? "square active" : "square"}>
+          {this.state.x === 2 && this.state.y === 2 ? "B" : ''}
+          </div>
+
+          <div className = {this.state.x === 2 && this.state.y === 3 ? "square active" : "square"}>
+            {this.state.x === 2 && this.state.y === 3 ? "B" : ''}
+          </div>
+
+          <div className = {this.state.x === 3 && this.state.y === 1 ? "square active" : "square"}>
+            {this.state.x === 3 && this.state.y === 1 ? "B" : ''}
+          </div>
+
+          <div className = {this.state.x === 3 && this.state.y === 2 ? "square active" : "square"}>
+            {this.state.x === 3 && this.state.y === 2 ? "B" : ''}
+          </div>
+          
+          <div className = {this.state.x === 3 && this.state.y === 3 ? "square active" : "square"}>
+            {this.state.x === 3 && this.state.y === 3 ? "B" : ''}
+          </div>
         </div>
         <div className="info">
           <h3 id="message"></h3>
