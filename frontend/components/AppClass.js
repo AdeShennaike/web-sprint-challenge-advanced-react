@@ -19,6 +19,14 @@ export default class AppClass extends React.Component {
         message: res.data.message
       })
     })
+    .catch(err => {
+      console.log(err)
+      this.setState({
+        ...this.state,
+        message: 'Ouch: email is required'
+      })
+
+    })
   }
 
   handleChange = (e) => {
@@ -29,35 +37,30 @@ export default class AppClass extends React.Component {
   }
 
   handleXminus = () => {
-    console.log('left')
     this.state.y <= 3 && this.state.y >= 2 ? 
     this.setState({...this.state, y: this.state.y - 1, steps: this.state.steps + 1}) :
     this.setState({...this.state, y: this.state.y === 3 ? 3 : this.state.y, message: "You can't go left"})
   }
   
   handleYadd = () => {
-    console.log('up')
     this.state.x <= 3 && this.state.x >= 2 ? 
     this.setState({...this.state, x: this.state.x - 1, steps: this.state.steps + 1}) :
     this.setState({...this.state, x: this.state.x === 3 ? 3 : this.state.x, message: "You can't go up"})
   }
   
   handleXadd = () => {
-    console.log('right')
     this.state.y <= 2 && this.state.y >= 1 ? 
     this.setState({...this.state, y: this.state.y + 1, steps: this.state.steps + 1}) :
     this.setState({...this.state, y: this.state.y === 3 ? 3 : this.state.y, message: "You can't go right"})
   }
   
   handleYminus = () => {
-    console.log('down')
     this.state.x <= 2 && this.state.x >= 1 ? 
     this.setState({...this.state, x: this.state.x + 1, steps: this.state.steps + 1}) :
     this.setState({...this.state, x: this.state.x === 3 ? 3 : this.state.x, message: "You can't go down"})
   }
 
   handleReset = () => {
-    console.log('reset')
     this.setState({
       ...this.state,
       x:2,
@@ -70,7 +73,6 @@ export default class AppClass extends React.Component {
 
   render() {
     const { className } = this.props
-    console.log(this.state.email)
     return (
       <div id="wrapper" className={className}>
         <div className="info">
