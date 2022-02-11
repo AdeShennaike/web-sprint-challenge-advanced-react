@@ -4,7 +4,7 @@ import React from 'react'
 export default class AppClass extends React.Component {
   state = {
     x:2,
-    y:2,
+    y:3,
     steps:0,
     email: "",
     message:''
@@ -22,7 +22,6 @@ export default class AppClass extends React.Component {
   }
 
   handleChange = (e) => {
-    // console.log(e.target.id)
     this.setState({
       ...this.state,
       email: e.target.value
@@ -32,7 +31,7 @@ export default class AppClass extends React.Component {
   handleXminus = () => {
     console.log('left')
     // this.state.x <= 3 && this.state.x > 0 ? 
-    // this.setState({...this.state, x: this.state.x - 1}) :
+    // this.setState({...this.state, x: this.state.x - 1, steps: steps + 1}) :
     // this.setState({...this.state, x: this.state.x === 3 ? 3 : this.state.x, message: "You can't go left"})
   }
 
@@ -50,6 +49,14 @@ export default class AppClass extends React.Component {
 
   handleReset = () => {
     console.log('reset')
+    this.setState({
+      ...this.state,
+      x:2,
+      y:2,
+      steps:0,
+      email: "",
+      message:''
+    })
   }
 
   render() {
