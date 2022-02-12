@@ -5,8 +5,17 @@ import userEvent from '@testing-library/user-event';
 
 import AppFunctional from './AppFunctional'
 
+let leftBtn, downBtn, upBtn, rightBtn, submitBtn, email, resetBtn
+
 beforeEach(() =>{
   render (<AppFunctional/>)
+  leftBtn = screen.getByText('LEFT')
+  downBtn = screen.getByText('DOWN')
+  upBtn = screen.getByText('UP')
+  rightBtn = screen.getByText('RIGHT')
+  submitBtn = screen.getByText('')
+  email = screen.getByPlaceholderText('type email')
+  resetBtn = screen.getByText('reset')
 })
 
 test('sanity', () => {
@@ -14,22 +23,21 @@ test('sanity', () => {
 }
 
 )
-test('sanity', () => {
+test('clicking up increase the step counter', () => {
+})
+
+test('submit return an error with no email is empty', () => {
   
 })
 
-test('sanity', () => {
-  
-})
-
-test('sanity', () => {
+test('counter resets when the reset button is clicked', () => {
   
 }
 )
-test('sanity', () => {
+test('typing on the input results in its value changing to the entered text', () => {
   
 })
 
-test('sanity', () => {
+test('coordinate x increases when the right button is clicked', () => {
   
 })

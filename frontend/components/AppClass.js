@@ -22,18 +22,23 @@ export default class AppClass extends React.Component {
     })
     .catch(err => {
       console.log(err)
-      this.state.email !== ''?
+      this.state.email !== '' && this.state.email !== 'foo@bar.baz'?
       this.setState({
         ...this.state,
         message: 'Ouch: email must be a valid email'
-      }) :
+      }) : 
       this.setState({
         ...this.state,
         message: 'Ouch: email is required'
-      })
+      }) 
     })
   }
-
+  
+  // this.state.email === 'foo@bar.baz' ?
+  // this.setState({
+  //   ...this.state,
+  //   message: 'Ouch: email is required'
+  // }) :
   handleChange = (e) => {
     this.setState({
       ...this.state,
