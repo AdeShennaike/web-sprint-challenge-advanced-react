@@ -12,7 +12,13 @@ export default class AppClass extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:9000/api/result', this.state)
+    const payload = {
+      x:this.state.x,
+      y:this.state.y,
+      steps:this.state.steps,
+      email:this.state.email
+    }
+    axios.post('http://localhost:9000/api/result', payload)
     .then( res => {
       this.setState({
         ...this.state,
@@ -21,12 +27,18 @@ export default class AppClass extends React.Component {
       })
     })
     .catch(err => {
-      console.log(err)
+      console.log(err.response)
       this.state.email !== '' && this.state.email !== 'foo@bar.baz'?
       this.setState({
         ...this.state,
         message: 'Ouch: email must be a valid email'
       }) : 
+      this.state.email === 'foo@bar.baz' ?
+      this.setState({
+        ...this.state,
+        email: "",
+        message: err.response.data.message
+      }) :
       this.setState({
         ...this.state,
         message: 'Ouch: email is required'
@@ -34,11 +46,6 @@ export default class AppClass extends React.Component {
     })
   }
   
-  // this.state.email === 'foo@bar.baz' ?
-  // this.setState({
-  //   ...this.state,
-  //   message: 'Ouch: email is required'
-  // }) :
   handleChange = (e) => {
     this.setState({
       ...this.state,

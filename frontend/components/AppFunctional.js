@@ -12,7 +12,13 @@ export default function AppFunctional(props) {
   
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:9000/api/result', state)
+    const payload = {
+      x:state.x,
+      y:state.y,
+      steps:state.steps,
+      email:state.email
+    }
+    axios.post('http://localhost:9000/api/result', payload)
     .then( res => {
       setState({
         ...state,
@@ -21,16 +27,22 @@ export default function AppFunctional(props) {
       })
     })
     .catch(err => {
-      console.log(err)
-      state.email !== ''?
+      console.log(err.response)
+      state.email !== '' && state.email !== 'foo@bar.baz'?
       setState({
         ...state,
         message: 'Ouch: email must be a valid email'
+      }) : 
+      state.email === 'foo@bar.baz' ?
+      setState({
+        ...state,
+        email: "",
+        message: err.response.data.message
       }) :
       setState({
         ...state,
         message: 'Ouch: email is required'
-      })
+      }) 
     })
   }
 

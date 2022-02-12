@@ -18,26 +18,31 @@ beforeEach(() =>{
   resetBtn = screen.getByText('reset')
 })
 
+afterEach(() => {
+  document.body.innerHTML = ''
+})
+
 test('sanity', () => {
   expect(true).toBe(false)
-}
+})
 
-)
 test('clicking up increase the step counter', () => {
+  userEvent.click(upBtn)
+
 })
 
-test('submit return an error with no email is empty', () => {
+// test('submit return an error with no email is empty', () => {
   
-})
+// })
 
-test('counter resets when the reset button is clicked', () => {
+// test('counter resets when the reset button is clicked', () => {
   
-}
-)
-test('typing on the input results in its value changing to the entered text', () => {
+// }
+// )
+// test('typing on the input results in its value changing to the entered text', () => {
   
-})
+// })
 
-test('coordinate x increases when the right button is clicked', () => {
+// test('coordinate x increases when the right button is clicked', () => {
   
-})
+// })
